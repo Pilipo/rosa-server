@@ -21,3 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/', function () {
     return ['hello'];
 });
+
+Route::get('/recipe/{recipe}', 'RecipeController@show');
+Route::get('/recipe', 'RecipeController@index');
+Route::post('/recipe', 'RecipeController@create');
