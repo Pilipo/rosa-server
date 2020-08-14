@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -39,7 +40,6 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        echo 'testing';
         try {
             $user = Socialite::driver('google')->user();
         } catch (\Exception $e) {
