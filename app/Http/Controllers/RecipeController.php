@@ -12,7 +12,7 @@ class RecipeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Recipe $recipe)
     {
         return response()->json($recipe->paginate()->toArray());
     }
@@ -33,7 +33,7 @@ class RecipeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Recipe $recipe)
     {
         $data = $request->validate([
             'name' => 'required|string|between:1,50',
