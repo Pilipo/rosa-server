@@ -39,6 +39,7 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
+        echo 'testing';
         try {
             $user = Socialite::driver('google')->user();
         } catch (\Exception $e) {
