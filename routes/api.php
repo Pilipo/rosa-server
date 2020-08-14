@@ -24,4 +24,4 @@ Route::get('/', function () {
 
 Route::get('/recipe/{recipe}', 'RecipeController@show');
 Route::get('/recipe', 'RecipeController@index');
-Route::post('/recipe', 'RecipeController@create');
+Route::post('/recipe', 'RecipeController@store');
