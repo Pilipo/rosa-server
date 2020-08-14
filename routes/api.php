@@ -18,9 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::domain('api.philliplehner.com')->group(function () {
-    Route::get('test', function () {
-        return 'test';
+Route::domain('api.rosa.philliplehner.com')->group(function () {
+    Route::get('rosa', function () {
+        return 201;
     });
 });
 
