@@ -23,3 +23,7 @@ Route::domain('api.philliplehner.com')->group(function () {
         return 'test';
     });
 });
+
+Route::get('test', function() {
+    return 200;
+});
