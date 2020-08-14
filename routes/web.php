@@ -17,14 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login/google', 'Auth\LoginController@redirectToProvider');
-Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
-// Route::get('login/{provider}', 'SocialController@redirect');
-// Route::get('login/{provider}/callback','SocialController@Callback');
-
-Route::get('/redirect', 'Auth\LoginController@redirectToProvider');
-Route::get('/callback', 'Auth\LoginController@handleProviderCallback');
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
