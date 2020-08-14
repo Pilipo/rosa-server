@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
+                    <a href="/login/google">Login with Google</a>
                 </div>
             </div>
         </div>
