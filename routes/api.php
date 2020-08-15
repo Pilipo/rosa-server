@@ -25,3 +25,4 @@ Route::get('/', function () {
 Route::get('/recipe/{recipe}', 'RecipeController@show');
 Route::get('/recipe', 'RecipeController@index');
 Route::post('/recipe', 'RecipeController@store');
+Route::delete('/recipe/{recipe}', 'RecipeController@destroy');
