@@ -13,9 +13,9 @@ class Recipe extends Model
         return $this->hasMany('App\Ingredient');
     }
 
-    public function user()
+    public function dates()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsToMany(Date::class);
     }
 
 }

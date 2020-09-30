@@ -14,15 +14,44 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Middleware
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
+// Root
 Route::get('/', function () {
     return ['hello'];
 });
 
-Route::get('/recipe/{recipe}', 'RecipeController@show');
-Route::get('/recipe', 'RecipeController@index');
-Route::post('/recipe', 'RecipeController@store');
-Route::delete('/recipe/{recipe}', 'RecipeController@destroy');
+// Recipes
+Route::get('/recipes', 'RecipeController@index');
+Route::post('/recipes', 'RecipeController@store');
+// Route::post('/recipes', function() {
+//     factory(App\Recipe::class, 3)->create();
+// });
+
+Route::get('/recipes/{id}', 'RecipeController@show');
+Route::patch('/recipes/{id}', 'RecipeController@edit');
+Route::delete('/recipes/{id}', 'RecipeController@destroy');
+
+// Dates
+Route::get('/date', 'DateController@index');
+Route::post('/date', function() {
+    $date = \App\Date::first();
+    $recipe = \App\Recipe::first();
+    $recipe->dates()->attach($date);
+
+    // \App\Date::create([
+    //     'meal day' => '2020-09-28'
+    // ]);
+    // \App\Date::create([
+    //     'meal day' => '2020-09-29'
+    // ]);
+    // \App\Date::create([
+    //     'meal day' => '2020-09-30'
+    // ]);
+    // \App\Date::create([
+    //     'meal day' => '2020-10-01'
+    // ]);
+});

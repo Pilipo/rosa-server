@@ -14,7 +14,7 @@ class RecipeController extends Controller
      */
     public function index(Recipe $recipe)
     {
-        return response()->json($recipe->paginate()->toArray());
+        return response()->json($recipe->with('dates')->paginate()->toArray());
     }
 
     /**
@@ -49,9 +49,9 @@ class RecipeController extends Controller
      * @param  \App\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function show(Recipe $recipe)
+    public function show($id, Request $request, Recipe $recipe)
     {
-        return response()->json($recipe->toArray());
+        return response()->json($recipe->where('id', $id)->with('dates')->get()->toArray());
     }
 
     /**
@@ -60,9 +60,20 @@ class RecipeController extends Controller
      * @param  \App\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function edit(Recipe $recipe)
+    public function edit(Request $request, $id)
     {
-        //
+        $recipe = Recipe::findOrFail($id);
+        $data = $request->validate([
+            'name' => 'required|string|between:1,50',
+            'yield' => 'required|string|between:1,50',
+        ]);
+    
+        if ($recipe->update($data)) {
+            return response()->json(['message' => "Success"], 200);
+        } else {
+            return response()->json($recipe->fail());
+        }
+
     }
 
     /**
