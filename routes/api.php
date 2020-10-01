@@ -26,14 +26,14 @@ Route::get('/', function () {
 
 // Recipes
 Route::get('/recipes', 'RecipeController@index');
-Route::post('/recipes', 'RecipeController@store');
+Route::post('/recipes', 'RecipeController@create');
 // Route::post('/recipes', function() {
 //     factory(App\Recipe::class, 3)->create();
 // });
 
 Route::get('/recipes/{id}', 'RecipeController@show');
-Route::patch('/recipes/{id}', 'RecipeController@edit');
-Route::delete('/recipes/{id}', 'RecipeController@destroy');
+Route::patch('/recipes/{id}', 'RecipeController@update');
+Route::delete('/recipes/{id}', 'RecipeController@delete');
 
 // Dates
 Route::get('/date', 'DateController@index');
