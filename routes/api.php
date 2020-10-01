@@ -36,8 +36,8 @@ Route::patch('/recipes/{id}', 'RecipeController@update');
 Route::delete('/recipes/{id}', 'RecipeController@delete');
 
 // Dates
-Route::get('/date', 'DateController@index');
-Route::post('/date', function() {
+Route::get('/dates', 'DateController@index');
+Route::post('/dates', function() {
     $date = \App\Date::first();
     $recipe = \App\Recipe::first();
     $recipe->dates()->attach($date);
