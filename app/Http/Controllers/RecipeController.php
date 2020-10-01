@@ -4,11 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RecipeController extends Controller
 {
-    public function index(Recipe $recipe)
+    public function index(Request $request, Recipe $recipe)
     {
+        if ($request->has('startDate', 'endDate')) {
+            $validator = Validator::make($request->all(), [
+                'startDate' => 'date',
+                'endDate' => 'date'
+            ]);
+            if ($validator->fails()) {
+                return response()->json('Error');
+            }
+            // GET RECIPES BY DATE RANGE
+        }
         return response()->json($recipe->with('dates')->paginate()->toArray());
     }
 
