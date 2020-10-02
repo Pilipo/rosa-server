@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <calendar></calendar>
             <div class="card">
                 <div class="card-header center">{{ $time->format('D, M d') }} to {{ $time->endOfWeek()->format('D, M d') }}</div>
                 <div class="card-body">
