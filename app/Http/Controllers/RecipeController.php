@@ -3,23 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Recipe;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\Eloquent\Builder;
 
 class RecipeController extends Controller
 {
     public function index(Request $request, Recipe $recipe)
     {
-        if ($request->has('startDate', 'endDate')) {
+        if ($request->has('fromDate', 'toDate')) {
             $validator = Validator::make($request->all(), [
-                'startDate' => 'date',
-                'endDate' => 'date'
+                'fromDate' => 'date',
+                'toDate' => 'date'
             ]);
             if ($validator->fails()) {
                 return response()->json('Error');
             }
-            // GET RECIPES BY DATE RANGE
+            $from = date($request->query('fromDate'));
+            $to = date($request->query('toDate'));
+            return response()->json($recipe->with('dates')->whereHas('dates', function (Builder $query) use ($from, $to) {
+                $query->whereBetween('meal_day', [$from, $to]);
+            })->paginate()->toArray());
         }
+
         return response()->json($recipe->with('dates')->paginate()->toArray());
     }
 

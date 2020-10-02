@@ -10,7 +10,7 @@ class Recipe extends Model
 
     public function ingredients()
     {
-        return $this->hasMany('App\Ingredient');
+        return $this->belongsToMany(Ingredient::class);
     }
 
     public function dates()
