@@ -7,7 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
 use App\User;
-use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 
 class CalendarController extends Controller
 {
@@ -23,17 +23,26 @@ class CalendarController extends Controller
 
     public function index()
     {
-        $mytime = Carbon::now();
-        $today = $mytime->now();
+        return view('planner/home', [
+            'time' => CarbonImmutable::now()->startOfWeek()
+            ]);
+    }
+
+    private function testCalendar() {
+        $timeReturn = [];
+        $mytime = CarbonImmutable::now();
+        $timeReturn['today'] = $mytime->now('America/Chicago'); 
+        $timeReturn['weekStart'] = $mytime->now('America/Chicago'); 
         $mytime->startOfWeek()->subDay();
+        echo 'today is ' . $lt . '<br>';
         for($i = 0; $i < 7; $i++) {
             echo $mytime->addDay();
             echo " - " . $mytime->englishDayOfWeek;
-            if ($mytime->isSameDay($today)) {
+            if ($mytime->isSameDay($lt)) {
                 echo " !!!";
             }
             echo "<br>";
         }
-        // return view('planner/home', ['today' => $mytime]);
+        return $mytime;
     }
 }
