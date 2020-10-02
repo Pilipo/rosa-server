@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Planner;
 
+use App\Recipe;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
 use App\User;
 use Carbon\CarbonImmutable;
+use Illuminate\Database\Eloquent\Builder;
 
 class CalendarController extends Controller
 {
@@ -21,10 +23,16 @@ class CalendarController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Recipe $recipe)
     {
+        $time = CarbonImmutable::now()->startOfWeek();
+        $recipes = $recipe->with('dates')->whereHas('dates', function (Builder $query) use ($time) {
+            $query->whereBetween('meal_day', [$time, $time->add(7, 'day')]);
+        })->get();
+
         return view('planner/home', [
-            'time' => CarbonImmutable::now()->startOfWeek()
+            'time' => $time,
+            'recipes' => $recipes
             ]);
     }
 
