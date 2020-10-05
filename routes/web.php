@@ -25,3 +25,4 @@ Route::get('/login/google', 'Auth\LoginController@redirectToProvider');
 Route::get('/login/google/callback', 'Auth\LoginController@handleProviderCallback');
 
 Route::get('/planner', 'Planner\CalendarController@index');
+Route::get('/recipes', 'Recipes\RecipeController@index');
