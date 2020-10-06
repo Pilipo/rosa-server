@@ -11,7 +11,7 @@
             <p>{{ testing }}</p>
             <button v-on:click="testing = 'Hey World!'">Change It</button> -->
             <div class="row">
-                <div class="col-lg-6 col-sm-12" v-for="n in 7">
+                <div class="col-lg-6 col-sm-12" v-for="(n, index) in 7" v-bind:key="index">
                     <div class="card mb-2">
                         <div class="card-header">
                             {{ moment().startOf('week').add(n, 'days').format('ddd DD') }}

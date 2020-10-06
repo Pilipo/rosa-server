@@ -6,9 +6,11 @@
 
 require('./bootstrap');
 import moment from 'moment';
+import axios from 'axios';
 
 window.Vue = require('vue');
 window.Vue.prototype.moment = moment;
+window.Vue.prototype.axios = axios;
 
 /**
  * The following block of code may be used to automatically register your
@@ -22,6 +24,7 @@ window.Vue.prototype.moment = moment;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('calendar', require('./components/MealPlanner/calendar.vue').default);
+Vue.component('recipe-list', require('./components/MealPlanner/recipeList.vue').default);
 
 Vue.component(
     'passport-clients',

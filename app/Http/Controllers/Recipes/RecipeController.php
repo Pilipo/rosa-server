@@ -30,7 +30,7 @@ class RecipeController extends Controller
             $query->whereBetween('meal_day', [$time, $time->add(7, 'day')]);
         })->get();
 
-        return view('planner/home', [
+        return view('recipes/home', [
             'time' => $time,
             'recipes' => $recipes
             ]);
