@@ -1979,18 +1979,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       recipes: []
     };
   },
+  methods: {
+    addRecipe: function addRecipe() {
+      var _this = this;
+
+      console.log('adding recipe');
+      axios.post('https://api.rosa.philliplehner.com/recipes', {
+        name: 'wizard fingers',
+        "yield": '48'
+      }).then(function (response) {
+        console.log(_this.recipes);
+
+        _this.recipes.push(response.data);
+
+        console.log(response.data);
+      });
+    }
+  },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     axios.get('https://api.rosa.philliplehner.com/recipes').then(function (response) {
-      _this.recipes = response.data;
-      console.log(_this.recipes.data);
+      _this2.recipes = response.data.data;
     });
     console.log("Component mounted. Testing...");
   }
@@ -60785,24 +60807,42 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
-    _c("div", { staticClass: "card-header" }, [
-      _vm._v("Searchbar and sort selection here...")
+  return _c("div", [
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-header" }, [
+        _vm._v("Searchbar and sort selection here...")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c(
+          "ul",
+          { staticClass: "list-group list-group-flush" },
+          _vm._l(_vm.recipes, function(recipe) {
+            return _c(
+              "li",
+              { key: recipe.id, staticClass: "list-group-item" },
+              [
+                _vm._v(_vm._s(recipe.name) + " "),
+                _c("em", { staticClass: "text-muted" }, [
+                  _vm._v("(" + _vm._s(recipe.yield) + ")")
+                ])
+              ]
+            )
+          }),
+          0
+        )
+      ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "card-body" }, [
+    _c("nav", { staticClass: "navbar fixed-bottom navbar-light bg-white" }, [
       _c(
-        "ul",
-        { staticClass: "list-group list-group-flush" },
-        _vm._l(_vm.recipes.data, function(recipe, index) {
-          return _c("li", { key: index, staticClass: "list-group-item" }, [
-            _vm._v(_vm._s(recipe.name) + " "),
-            _c("em", { staticClass: "text-muted" }, [
-              _vm._v("(" + _vm._s(recipe.yield) + ")")
-            ])
-          ])
-        }),
-        0
+        "a",
+        {
+          staticClass: "navbar-brand",
+          attrs: { href: "#" },
+          on: { click: _vm.addRecipe }
+        },
+        [_vm._v("Add Recipe")]
       )
     ])
   ])

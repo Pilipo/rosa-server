@@ -73,10 +73,6 @@
             </div>
         </nav>
 
-        <nav class="navbar fixed-bottom navbar-light bg-light">
-            <a class="navbar-brand" href="#">Fixed bottom</a>
-        </nav>
-
         <main class="py-4 mt-5 mb-5">
             @yield('content')
         </main>
