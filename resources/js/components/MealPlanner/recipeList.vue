@@ -21,7 +21,7 @@ export default {
   },
   mounted() {
     axios
-      .get('http://api.rosa.philliplehner.net/recipes')
+      .get('https://api.rosa.philliplehner.com/recipes')
       .then((response) => {
         this.recipes = response.data;
         console.log(this.recipes.data);

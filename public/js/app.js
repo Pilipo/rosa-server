@@ -1988,7 +1988,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('http://api.rosa.philliplehner.net/recipes').then(function (response) {
+    axios.get('https://api.rosa.philliplehner.com/recipes').then(function (response) {
       _this.recipes = response.data;
       console.log(_this.recipes.data);
     });
