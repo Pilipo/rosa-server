@@ -1,7 +1,6 @@
 <template>
   <div class="card">
-    <div class="card-header">Searchbar here...</div>
-
+    <div class="card-header">Searchbar and sort selection here...</div>
     <div class="card-body">
       <!-- <p>I'm an example component.</p>
             <p>{{ testing }}</p>
@@ -17,7 +16,6 @@
 export default {
   data() {
     return {
-      testing: "huh?",
       recipes: [],
     };
   },
