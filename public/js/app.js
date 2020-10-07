@@ -1988,7 +1988,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      recipes: []
+      recipes: [],
+      nextPageURL: '',
+      currentPage: 0,
+      lastPage: 0
     };
   },
   methods: {
@@ -2006,13 +2009,33 @@ __webpack_require__.r(__webpack_exports__);
 
         console.log(response.data);
       });
+    },
+    scroll: function scroll() {
+      var _this2 = this;
+
+      window.onscroll = function () {
+        var bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+
+        if (bottomOfWindow && _this2.currentPage !== _this2.lastPage) {
+          axios.get(_this2.nextPageURL).then(function (response) {
+            _this2.recipes = _this2.recipes.concat(response.data.data);
+            _this2.currentPage = response.data.current_page;
+            console.log(response.data);
+          });
+        }
+      };
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
+    this.scroll();
     axios.get('https://api.rosa.philliplehner.com/recipes').then(function (response) {
-      _this2.recipes = response.data.data;
+      _this3.recipes = response.data.data;
+      _this3.nextPageURL = response.data.next_page_url;
+      _this3.currentPage = response.data.current_page;
+      _this3.lastPage = response.data.last_page;
+      console.log(response.data);
     });
     console.log("Component mounted. Testing...");
   }

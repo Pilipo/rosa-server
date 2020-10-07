@@ -23,6 +23,9 @@ export default {
   data() {
     return {
       recipes: [],
+      nextPageURL: '',
+      currentPage: 0,
+      lastPage: 0,
     };
   },
   methods: {
@@ -38,13 +41,33 @@ export default {
         this.recipes.push(response.data)
         console.log(response.data);
       })
+    },
+    scroll: function() {
+      window.onscroll = () => {
+        let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+
+        if (bottomOfWindow && (this.currentPage !== this.lastPage)) {
+          axios
+            .get(this.nextPageURL)
+            .then((response) => {
+              this.recipes = this.recipes.concat(response.data.data);
+              this.currentPage = response.data.current_page;
+              console.log(response.data);
+      })
+        }
+      }
     }
   },
   mounted() {
+    this.scroll();
     axios
       .get('https://api.rosa.philliplehner.com/recipes')
       .then((response) => {
         this.recipes = response.data.data;
+        this.nextPageURL = response.data.next_page_url;
+        this.currentPage = response.data.current_page;
+        this.lastPage = response.data.last_page;
+        console.log(response.data);
       })
     console.log("Component mounted. Testing...");
   },
