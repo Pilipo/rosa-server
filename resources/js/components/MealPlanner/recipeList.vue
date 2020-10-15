@@ -58,8 +58,7 @@ export default {
       }
     }
   },
-  mounted() {
-    this.scroll();
+  beforeMount() {
     axios
       .get('https://api.rosa.philliplehner.com/recipes')
       .then((response) => {
@@ -69,6 +68,10 @@ export default {
         this.lastPage = response.data.last_page;
         console.log(response.data);
       })
+
+  },
+  mounted() {
+    this.scroll();
     console.log("Component mounted. Testing...");
   },
 };

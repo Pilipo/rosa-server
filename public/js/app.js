@@ -2026,10 +2026,9 @@ __webpack_require__.r(__webpack_exports__);
       };
     }
   },
-  mounted: function mounted() {
+  beforeMount: function beforeMount() {
     var _this3 = this;
 
-    this.scroll();
     axios.get('https://api.rosa.philliplehner.com/recipes').then(function (response) {
       _this3.recipes = response.data.data;
       _this3.nextPageURL = response.data.next_page_url;
@@ -2037,6 +2036,9 @@ __webpack_require__.r(__webpack_exports__);
       _this3.lastPage = response.data.last_page;
       console.log(response.data);
     });
+  },
+  mounted: function mounted() {
+    this.scroll();
     console.log("Component mounted. Testing...");
   }
 });
