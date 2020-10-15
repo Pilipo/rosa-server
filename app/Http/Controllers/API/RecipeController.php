@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\Recipe;
+use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -12,22 +13,7 @@ class RecipeController extends Controller
 {
     public function index(Request $request, Recipe $recipe)
     {
-        if ($request->has('fromDate', 'toDate')) {
-            $validator = Validator::make($request->all(), [
-                'fromDate' => 'date',
-                'toDate' => 'date'
-            ]);
-            if ($validator->fails()) {
-                return response()->json('Error');
-            }
-            $from = date($request->query('fromDate'));
-            $to = date($request->query('toDate'));
-            return response()->json($recipe->with('dates')->whereHas('dates', function (Builder $query) use ($from, $to) {
-                $query->whereBetween('meal_day', [$from, $to]);
-            })->paginate()->toArray());
-        }
-
-        return response()->json($recipe->with('dates')->paginate()->toArray());
+        return response()->json($recipe->paginate()->toArray());
     }
 
     public function create(Request $request, Recipe $recipe)
@@ -42,7 +28,7 @@ class RecipeController extends Controller
 
     public function show($id, Request $request, Recipe $recipe)
     {
-        return response()->json($recipe->where('id', $id)->with('dates')->get()->toArray());
+        return response()->json($recipe->where('id', $id)->get()->toArray());
     }
 
     public function update(Request $request, $id)

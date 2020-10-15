@@ -25,33 +25,12 @@ Route::get('/', function () {
 });
 
 // Recipes
-Route::get('/recipes', 'RecipeController@index');
-Route::post('/recipes', 'RecipeController@create');
+Route::get('/recipes', 'API\RecipeController@index');
+// Route::post('/recipes', 'API\RecipeController@create');
 // Route::post('/recipes', function() {
 //     factory(App\Recipe::class, 3)->create();
 // });
 
-Route::get('/recipes/{id}', 'RecipeController@show');
-Route::patch('/recipes/{id}', 'RecipeController@update');
-Route::delete('/recipes/{id}', 'RecipeController@delete');
-
-// Dates
-Route::get('/dates', 'DateController@index');
-Route::post('/dates', function() {
-    $date = \App\Date::first();
-    $recipe = \App\Recipe::first();
-    $recipe->dates()->attach($date);
-
-    // \App\Date::create([
-    //     'meal day' => '2020-09-28'
-    // ]);
-    // \App\Date::create([
-    //     'meal day' => '2020-09-29'
-    // ]);
-    // \App\Date::create([
-    //     'meal day' => '2020-09-30'
-    // ]);
-    // \App\Date::create([
-    //     'meal day' => '2020-10-01'
-    // ]);
-});
+// Route::get('/recipes/{id}', 'API\RecipeController@show');
+// Route::patch('/recipes/{id}', 'API\RecipeController@update');
+// Route::delete('/recipes/{id}', 'API\RecipeController@delete');
