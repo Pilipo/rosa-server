@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Planner;
+namespace App\Http\Controllers\WEB\Planner;
 
 use App\Recipe;
 use App\Http\Controllers\Controller;

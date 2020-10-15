@@ -19,10 +19,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'WEB\HomeController@index')->name('home');
 
 Route::get('/login/google', 'Auth\LoginController@redirectToProvider');
 Route::get('/login/google/callback', 'Auth\LoginController@handleProviderCallback');
 
-Route::get('/planner', 'Planner\CalendarController@index');
-Route::get('/recipes', 'Recipes\RecipeController@index');
+Route::get('/planner', 'WEB\Planner\CalendarController@index');
+Route::get('/recipes', 'WEB\Recipes\RecipeController@index');
