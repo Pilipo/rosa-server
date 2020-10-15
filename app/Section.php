@@ -10,7 +10,7 @@ class Section extends Model
 
     public function ingredients()
     {
-        return $this->hasMany('App\Ingredient');
+        return $this->hasMany(Ingredient::class);
     }
 
 }

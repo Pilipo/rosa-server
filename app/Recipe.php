@@ -10,12 +10,16 @@ class Recipe extends Model
 
     public function ingredients()
     {
-        return $this->belongsToMany(Ingredient::class);
+        return $this->hasMany(Ingredient::class);
     }
 
-    public function dates()
+    public function meals()
     {
-        return $this->belongsToMany(Date::class);
+        return $this->belongsToMany(Meal::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

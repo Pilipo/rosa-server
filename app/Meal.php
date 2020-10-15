@@ -4,9 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Date extends Model
+class Meal extends Model
 {
-    protected $fillable = ['meal_day'];
+    protected $fillable = ['make_on'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function recipes()
     {

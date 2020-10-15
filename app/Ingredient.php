@@ -6,15 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ingredient extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'amount'];
 
     public function recipe()
     {
-        return $this->belongsTo('App\Recipe');
+        return $this->belongsTo(Recipe::class);
     }
 
     public function section()
     {
-        return $this->belongsTo('App\Section');
+        return $this->belongsTo(Section::class);
+    }
+
+    public function shoppingList()
+    {
+        return $this->belongsToMany(ShoppingList::class);
     }
 }
