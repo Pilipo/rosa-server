@@ -18,6 +18,7 @@ class CreateIngredientsTable extends Migration
             $table->string('name')->unique();
             $table->string('amount');
             $table->bigInteger('recipe_id');
+            $table->bigInteger('section_id');
             $table->timestamps();
         });
     }
