@@ -25,7 +25,6 @@ class RecipeController extends Controller
 
     public function index(Recipe $recipe)
     {
-        dd($recipe);
         $time = CarbonImmutable::now()->startOfWeek();
         $recipes = $recipe->get();
 

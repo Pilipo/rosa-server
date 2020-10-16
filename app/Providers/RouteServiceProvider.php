@@ -73,9 +73,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-        Route::domain('api.rosa.philliplehner.' . ((env('APP_ENV') == 'production') ? 'com' : 'net'))
+        Route::domain('rosa.philliplehner.' . ((env('APP_ENV') == 'production') ? 'com' : 'net'))
             ->middleware('api')
             ->namespace($this->namespace)
+            ->prefix('api')
             ->group(base_path('routes/api.php'));
     }
 }
