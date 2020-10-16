@@ -25,15 +25,7 @@ class CalendarController extends Controller
 
     public function index(Recipe $recipe)
     {
-        $time = CarbonImmutable::now()->startOfWeek();
-        $recipes = $recipe->with('dates')->whereHas('dates', function (Builder $query) use ($time) {
-            $query->whereBetween('meal_day', [$time, $time->add(7, 'day')]);
-        })->get();
-
-        return view('planner/home', [
-            'time' => $time,
-            'recipes' => $recipes
-            ]);
+        return view('planner/home');
     }
 
     private function testCalendar() {
