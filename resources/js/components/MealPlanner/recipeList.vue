@@ -32,7 +32,7 @@ export default {
     addRecipe: function() {
       console.log('adding recipe');
       axios
-      .post('https://api.rosa.philliplehner.com/recipes',{
+      .post(process.env.MIX_APP_URL + '/api/recipes',{
         name: 'wizard fingers',
         yield: '48'
       })
@@ -60,7 +60,7 @@ export default {
   },
   beforeMount() {
     axios
-      .get('https://api.rosa.philliplehner.com/recipes')
+      .get(process.env.MIX_APP_URL + '/api/recipes')
       .then((response) => {
         this.recipes = response.data.data;
         this.nextPageURL = response.data.next_page_url;
@@ -73,6 +73,7 @@ export default {
   mounted() {
     this.scroll();
     console.log("Component mounted. Testing...");
+    console.log(process.env.MIX_APP_URL);
   },
 };
 </script>

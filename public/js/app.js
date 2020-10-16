@@ -1999,7 +1999,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       console.log('adding recipe');
-      axios.post('https://api.rosa.philliplehner.com/recipes', {
+      axios.post("http://rosa.philliplehner.net" + '/api/recipes', {
         name: 'wizard fingers',
         "yield": '48'
       }).then(function (response) {
@@ -2029,7 +2029,7 @@ __webpack_require__.r(__webpack_exports__);
   beforeMount: function beforeMount() {
     var _this3 = this;
 
-    axios.get('https://api.rosa.philliplehner.com/recipes').then(function (response) {
+    axios.get("http://rosa.philliplehner.net" + '/api/recipes').then(function (response) {
       _this3.recipes = response.data.data;
       _this3.nextPageURL = response.data.next_page_url;
       _this3.currentPage = response.data.current_page;
@@ -2040,6 +2040,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.scroll();
     console.log("Component mounted. Testing...");
+    console.log("http://rosa.philliplehner.net");
   }
 });
 
@@ -74806,8 +74807,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/phillip/dev/rosa-server/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/phillip/dev/rosa-server/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/phillip/Code/rosa-server/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/phillip/Code/rosa-server/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
