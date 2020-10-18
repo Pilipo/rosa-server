@@ -8,13 +8,16 @@ info:
     email: pl@philliplehner.com
   description: Create recipes and build meal plans and chopping lists.
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'http://rosa.philliplehner.net'
 paths:
   /recipes:
     get:
       summary: Your GET endpoint
-      tags: []
-      responses: {}
+      tags:
+        - recipes
+      responses:
+        '200':
+          description: OK
       operationId: get-recipes
       description: Get a pagenated list of all recipes on the server.
       parameters:
@@ -32,8 +35,11 @@ paths:
         required: true
     get:
       summary: Your GET endpoint
-      tags: []
-      responses: {}
+      tags:
+        - recipes
+      responses:
+        '200':
+          description: OK
       operationId: get-recipes-recipe-id
       description: 'Get details of a specific recipe, referenced by its ID.'
     post:
@@ -43,6 +49,8 @@ paths:
         '200':
           description: OK
       description: Create new recipe.
+      tags:
+        - recipes
     put:
       summary: ''
       operationId: put-recipes-recipe-id
@@ -50,6 +58,8 @@ paths:
         '200':
           description: OK
       description: Update or create recipe by recipe ID.
+      tags:
+        - recipes
     patch:
       summary: ''
       operationId: patch-recipes-recipe-id
@@ -57,6 +67,8 @@ paths:
         '200':
           description: OK
       description: Update values of recipe ID.
+      tags:
+        - recipes
     delete:
       summary: ''
       operationId: delete-recipes-recipe-id
@@ -64,5 +76,9 @@ paths:
         '200':
           description: OK
       description: Delete recipe at ID.
+      tags:
+        - recipes
 components:
   schemas: {}
+tags:
+  - name: recipes
