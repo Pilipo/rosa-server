@@ -1,0 +1,68 @@
+openapi: 3.0.0
+info:
+  title: Meal Planner
+  version: '1.0'
+  contact:
+    name: Phillip Lehner
+    url: www.philliplehner.com
+    email: pl@philliplehner.com
+  description: Create recipes and build meal plans and chopping lists.
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /recipes:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-recipes
+      description: Get a pagenated list of all recipes on the server.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: search
+          description: Search string of three or more characters
+  '/recipes/{recipe-id}':
+    parameters:
+      - schema:
+          type: string
+        name: recipe-id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-recipes-recipe-id
+      description: 'Get details of a specific recipe, referenced by its ID.'
+    post:
+      summary: ''
+      operationId: post-recipes-recipe-id
+      responses:
+        '200':
+          description: OK
+      description: Create new recipe.
+    put:
+      summary: ''
+      operationId: put-recipes-recipe-id
+      responses:
+        '200':
+          description: OK
+      description: Update or create recipe by recipe ID.
+    patch:
+      summary: ''
+      operationId: patch-recipes-recipe-id
+      responses:
+        '200':
+          description: OK
+      description: Update values of recipe ID.
+    delete:
+      summary: ''
+      operationId: delete-recipes-recipe-id
+      responses:
+        '200':
+          description: OK
+      description: Delete recipe at ID.
+components:
+  schemas: {}
