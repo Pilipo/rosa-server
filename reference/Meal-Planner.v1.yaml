@@ -8,7 +8,7 @@ info:
     email: pl@philliplehner.com
   description: Create recipes and build meal plans and shopping lists.
 servers:
-  - url: 'http://rosa.philliplehner.net'
+  - url: 'http://rosa.philliplehner.net/api'
 paths:
   /recipes:
     get:
