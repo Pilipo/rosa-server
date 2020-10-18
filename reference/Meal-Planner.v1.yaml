@@ -6,7 +6,7 @@ info:
     name: Phillip Lehner
     url: www.philliplehner.com
     email: pl@philliplehner.com
-  description: Create recipes and build meal plans and chopping lists.
+  description: Create recipes and build meal plans and shopping lists.
 servers:
   - url: 'http://rosa.philliplehner.net'
 paths:
