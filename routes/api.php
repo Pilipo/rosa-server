@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::fallback(function() {
+    return response()->json([
+        'message' => 'Page Not Found.'
+    ], 404);
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/', function () {
+    return ['hello'];
 });
