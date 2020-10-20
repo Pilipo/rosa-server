@@ -17,12 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-Route::get('/home', 'WEB\HomeController@index')->name('home');
-
-Route::get('/login/google', 'Auth\LoginController@redirectToProvider');
-Route::get('/login/google/callback', 'Auth\LoginController@handleProviderCallback');
-
-Route::get('/planner', 'WEB\Planner\CalendarController@index');
-Route::get('/recipes', 'WEB\Recipes\RecipeController@index');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return Inertia\Inertia::render('Dashboard');
+})->name('dashboard');
