@@ -14,23 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Middleware
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::fallback(function() {
+    return response()->json([
+        'message' => 'Page Not Found.'
+    ], 404);
+});
 
-// Root
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
 Route::get('/', function () {
     return ['hello'];
 });
-
-// Recipes
-Route::get('/recipes', 'API\RecipeController@index');
-// Route::post('/recipes', 'API\RecipeController@create');
-// Route::post('/recipes', function() {
-//     factory(App\Recipe::class, 3)->create();
-// });
-
-// Route::get('/recipes/{id}', 'API\RecipeController@show');
-// Route::patch('/recipes/{id}', 'API\RecipeController@update');
-// Route::delete('/recipes/{id}', 'API\RecipeController@delete');
