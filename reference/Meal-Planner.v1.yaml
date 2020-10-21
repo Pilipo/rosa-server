@@ -8,7 +8,10 @@ info:
     email: pl@philliplehner.com
   description: Create recipes and build meal plans and shopping lists.
 servers:
-  - url: 'http://rosa.philliplehner.net/api'
+  - url: 'http://rosa.philliplehner.net/api/v1'
+    description: development
+  - description: production
+    url: 'http://rosa.philliplehner.com/api/v1'
 paths:
   /recipes:
     get:
@@ -18,6 +21,15 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ''
       operationId: get-recipes
       description: Get a pagenated list of all recipes on the server.
       parameters:
@@ -26,6 +38,30 @@ paths:
           in: query
           name: search
           description: Search string of three or more characters
+    post:
+      summary: ''
+      operationId: post-recipes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/New-Recipe'
+      description: Creates a new recipe.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: name
+          required: true
+          description: Recipe title. Should be unique.
+        - schema:
+            type: integer
+          in: query
+          name: yield
+          required: true
+          description: Number that describes the recipe's yield.
   '/recipes/{recipe-id}':
     parameters:
       - schema:
@@ -79,6 +115,38 @@ paths:
       tags:
         - recipes
 components:
-  schemas: {}
+  schemas:
+    New-Recipe:
+      title: New-Recipe
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        yield:
+          type: string
+    Recipe:
+      title: Recipe
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        yield:
+          type: integer
+        ingredients:
+          $ref: '#/components/schemas/Ingredients'
+    Ingredients:
+      title: Ingredients
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        amount:
+          type: string
 tags:
   - name: recipes
