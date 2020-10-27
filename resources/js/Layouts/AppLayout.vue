@@ -17,6 +17,9 @@
                             <jet-nav-link :href="route('dashboard')" :active="$page.currentRouteName == 'dashboard'">
                                 Dashboard
                             </jet-nav-link>
+                            <jet-nav-link :href="route('dashboard')" :active="$page.currentRouteName == 'dashboard'">
+                                Testing
+                            </jet-nav-link>
                         </div>
                     </div>
 
@@ -43,7 +46,7 @@
                                 <template #content>
                                     <!-- Account Management -->
                                     <div class="block px-4 py-2 text-xs text-gray-400">
-                                        Manage Account
+                                        Manage Account Crap
                                     </div>
 
                                     <jet-dropdown-link :href="route('profile.show')">

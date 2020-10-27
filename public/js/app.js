@@ -3045,6 +3045,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -25020,9 +25023,7 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("div", { staticClass: "mt-8 text-2xl" }, [
-          _vm._v(
-            "\n            Welcome to your Jetstream application!\n        "
-          )
+          _vm._v("\n            Welcome to MY Jetstream application!\n        ")
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "mt-6 text-gray-500" }, [
@@ -25393,6 +25394,21 @@ var render = function() {
                         "\n                            Dashboard\n                        "
                       )
                     ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "jet-nav-link",
+                    {
+                      attrs: {
+                        href: _vm.route("dashboard"),
+                        active: _vm.$page.currentRouteName == "dashboard"
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                            Testing\n                        "
+                      )
+                    ]
                   )
                 ],
                 1
@@ -25484,7 +25500,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                                    Manage Account\n                                "
+                                    "\n                                    Manage Account Crap\n                                "
                                   )
                                 ]
                               ),
