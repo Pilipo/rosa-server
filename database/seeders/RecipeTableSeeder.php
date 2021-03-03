@@ -16,9 +16,10 @@ class RecipeTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        foreach (range(1, 100) as $idx) {
+        $faker->addProvider(new \FakerRestaurant\Provider\en_US\Restaurant($faker));
+        foreach (range(1, 50) as $idx) {
             DB::table('recipes')->insert([
-                'name' => $faker->word(),
+                'name' => $faker->foodName() . '-' . $faker->word(),
                 'servings' => rand(3, 48) . ' servings',
                 'user_id' => rand(0, 400)
             ]);

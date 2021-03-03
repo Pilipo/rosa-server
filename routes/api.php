@@ -31,5 +31,5 @@ Route::get('/', function () {
 });
 
 Route::get('/recipes', function () {
-    return new RecipeCollection(Recipe::all());
+    return new RecipeCollection(Recipe::paginate());
 });
