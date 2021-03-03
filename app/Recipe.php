@@ -12,14 +12,4 @@ class Recipe extends Model
     {
         return $this->hasMany(Ingredient::class);
     }
-
-    // public function meals()
-    // {
-    //     return $this->belongsToMany(Meal::class);
-    // }
-
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
 }
