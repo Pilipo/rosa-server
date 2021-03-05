@@ -22,7 +22,7 @@ class IngredientTableSeeder extends Seeder
         foreach (range(1, 50) as $idx) {
             DB::table('ingredients')->insert([
                 'name' => $faker->dairyName() . '-' . $faker->word() . $faker->word(),
-                'amount' => rand(3, 48) . ' servings',
+                'amount' => rand(1, 3) . ' cups',
                 'recipe_id' => $idx,
                 'section_id' => 0,
             ]);
@@ -31,7 +31,7 @@ class IngredientTableSeeder extends Seeder
         foreach (range(1, 50) as $idx) {
             DB::table('ingredients')->insert([
                 'name' => $faker->vegetableName() . '-' . $faker->word() . $faker->word(),
-                'amount' => rand(3, 48) . ' servings',
+                'amount' => rand(1, 3) . ' pounds',
                 'recipe_id' => $idx,
                 'section_id' => 1,
             ]);
@@ -40,7 +40,7 @@ class IngredientTableSeeder extends Seeder
         foreach (range(1, 50) as $idx) {
             DB::table('ingredients')->insert([
                 'name' => $faker->meatName() . '-' . $faker->word() . $faker->word(),
-                'amount' => rand(3, 48) . ' servings',
+                'amount' => rand(1, 3) . ' tsp',
                 'recipe_id' => $idx,
                 'section_id' => 2,
             ]);
@@ -49,7 +49,7 @@ class IngredientTableSeeder extends Seeder
         foreach (range(1, 50) as $idx) {
             DB::table('ingredients')->insert([
                 'name' => $faker->fruitName() . '-' . $faker->word() . $faker->word(),
-                'amount' => rand(3, 48) . ' servings',
+                'amount' => rand(1, 3) . ' Tbsp',
                 'recipe_id' => $idx,
                 'section_id' => 3,
             ]);

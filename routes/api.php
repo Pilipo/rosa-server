@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Resources\RecipeCollection;
+use App\Http\Resources\RecipeResource;
+use App\Http\Resources\SectionCollection;
 use App\Recipe;
+use App\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +33,16 @@ Route::get('/', function () {
     return ['hello'];
 });
 
+// RECIPES
 Route::get('/recipes', function () {
-    return new RecipeCollection(Recipe::paginate());
+    return new RecipeCollection(Recipe::paginate(5));
+});
+
+Route::get('/recipe/{recipe_id}', function ($recipe_id) {
+    return new RecipeResource(Recipe::findOrFail($recipe_id));
+});
+
+// SECTIONS
+Route::get('/sections', function () {
+    return new SectionCollection(Section::paginate());
 });
